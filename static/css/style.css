@@ -60,6 +60,13 @@ Styles
   margin-top: 2em;
 }
 
+.warning{
+	color: red;
+}
+
+.swiftarticle{
+	width: 100%
+}
 .columns {
     position: relative;
     padding-top: 2rem;
@@ -879,7 +886,7 @@ h1#homepage {
 }
 
 h1#breadcrumb {
-	font-size: 0.85714286rem;
+	font-size: 3.0rem;
 	color: rgb(200, 200, 200);
 	text-align: left;
 	text-transform: uppercase;
