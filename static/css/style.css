@@ -60,6 +60,13 @@ Styles
   margin-top: 2em;
 }
 
+.warning{
+	color: red;
+}
+
+.swiftarticle{
+	width: 100%
+}
 .columns {
     position: relative;
     padding-top: 2rem;
@@ -94,7 +101,7 @@ Styles
 }
 
 	.large-7 {
-    width: 80%; 
+    width: 100%; 
 }
 	.large-8 {
     width: 33.3333%; 
@@ -830,6 +837,13 @@ Home Page
 	color: #ff0000;
 	font-size: 26px;
 }
+.side_about{
+	font-size: 1.00rem;
+	font-weight: 100;
+	font-style: italic;
+	color: rgb(170, 170, 170);
+	line-height: 1.00;
+}
 
 .homepage-quote {
 	font-size: 1.875rem;
@@ -879,7 +893,7 @@ h1#homepage {
 }
 
 h1#breadcrumb {
-	font-size: 0.85714286rem;
+	font-size: 3.0rem;
 	color: rgb(200, 200, 200);
 	text-align: left;
 	text-transform: uppercase;

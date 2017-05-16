@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+  <meta property="og:description" content="Every new iOS developer is exposed to a huge amount of information that is crucial to master: a new language, new frameworks, and Apple’s recommended architectural pattern: Model-View-Controller"/>
+  <meta property="og:image" content="static/images/mvc.png">
+  <meta property="og:url" content="https://khalidyaseen.github.io/yaseenmajeed.com/blog.html">
+  <meta property="og:type" content="blog"/>
+
+	<link rel="shortcut icon" href="static/images/favicon.ico">
+	<link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/responsiveslides.css" />
+  <link rel="stylesheet" type="text/css" href="static/css/fresco/fresco.css"/>
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600,300italic,400italic' rel='stylesheet' type='text/css'>
+
+  <title>MVC in Swift</title>
+
+</head>
+
+<body>
+
+  <section id="wrapper">
+
+<!--nav-->
+<section id="nav">
+<div class="nav">
+  <a href="index.html" class="avatar">
+    <img id="avatar" class="2x" src="static/images/avatar@2x.jpg"/></img>
+  </a>
+  <ul class="nav">
+    <li><a href="index.html">About</a></li>
+    <li><a href="career.html" id="active">Experience</a>
+      <ul>
+        <li>
+          <a href="career.html" id="active">Career</a>
+          <a href="blog.html" id="active">Blogs</a>
+          <!--<a href="macys.html">Product</a>
+          <a href="talks.html">Friends</a>--> 
+        </li>
+      </ul>
+    </li>
+    <!--<li><a href="process.html">Process</a></li>-->
+  </ul>
+  <div>
+    <a href="https://www.linkedin.com/profile/view?id=AAIAABNnvR8BxQLwV8MK5H5L4hGxYaTNhiCgT5E&trk=nav_responsive_tab_profile" target="_blank">
+      <img class="mail" class="2x" src="static/images/linkedin@2x.png"/></img>
+    </a>
+    <a href="https://twitter.com/khalidyaseen1" target="_blank" id="tweet">
+      <img class="mail" class="2x" src="static/images/tweet@2x.png"/></img>
+    </a>  
+  </div>
+</div>
+</section> <!--nav-->
+
+
+<section id="container">
+  <header id="content">
+    <h1 id="breadcrumb">Model View Controller in Swift</h1>
+   
+    <div id="hr-yellow"></div>
+
+<div class="row">
+
+ <div class="swiftarticle columns">
+   <p class="about">Every new iOS developer is exposed to a huge amount of information that is crucial to master: a new language, new frameworks, and Apple’s recommended architectural pattern:<a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html"> Model-View-Controller</a>, or MVC for short.
+  Getting up to speed with iOS development can be a daunting task, and more often than not, developers don’t pay MVC enough attention, sometimes leading to major headaches down the road.
+  This article will help you avoid the common mistake of an app that’s become too difficult to extend. You’ll learn a modern approach of what to do—and what not to do—as you use MVC to build out your app, using best practices learned through the school of hard knocks.
+  By the end of this article, you’ll know how to use modern best practices in your apps and prevent structural problems before they become a headache. Let’s go!   </p>
+    <br>
+    <h3>MVC 101</h3>
+   <p class="about">From a high level, MVC is as straightforward as its name. It’s made up of three layers: the model, the view and the controller.</p>
+   <ul>
+   <li>
+        <p class="about">The <a href="#">Model</a> is where your data resides. Things like persistence, model objects, parsers and networking code normally live there.</p>
+   </li>
+   <li>
+       <p class="about">The <a href="#">View</a> layer is the face of your app. Its classes are typically reusable, since there aren’t any domain-specific logic in them. For example, a UILabel is a view that presents text on the screen, and it’s easily reusable.</p>
+   </li>
+   <li>
+       <p class="about"> The <a href="#">Controller</a> mediates between the view and the model, typically via the delegation pattern. In the ideal scenario, the controller entity won’t know the concrete view it’s dealing with. Instead, it will communicate with an abstraction via a protocol. A classic example is the way a UITableView communicates with its data source via the UITableViewDataSource protocol.</p>
+    </li> 
+  </ul>
+   <p class="about">When you put everything together, it looks like this:</p>
+    <img src="static/images/mvc.png"></img>
+   <p class="about">You can further have a look over <a href="https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html">Apple’s MVC documentation </a> which explains these layers in detail and can give you a theoretical understanding that will help you avoid potential pitfalls.</p>
+
+   <h3>So What Goes Where ?</h3>
+   <p class="about">Although it’s easy to understand the theory of MVC, it sometimes is tricky to figure out what goes where from a practical standpoint. Let’s take some time to focus on this. while explaning i will refer to my IOS calculator App which is on <a href="https://github.com/khalidyaseen/Calculator">github</a></p>
+   <br>
+   <h3>The View Layer</h3>
+   <p class="about">The view layer contains objects that are visible to the user. Examples of view objects, or views, are buttons, text fields, and sliders. View objects make up an application’s UI. In my <a href="https://github.com/khalidyaseen/Calculator">Calculator App</a> the UI comprising of buttons and labels represents my View Layer</p>
+
+   <p class="about"><div class = "warning"><h4>Warning</h4> It’s tempting to put a bunch of code in your UIViewController and be done with it, so you can meet that deadline. Don’t do it! In the short term, you might save a couple of minutes, but in the long term, you could lose hours looking for a bug, or have trouble when you want to reuse code inside one view controller in another.</div></p>
+
+   <p class="about">Use the following as a checklist when inspecting your view layer:</p>
+   <ul>
+     <li><p class="about">Does it interact with the model layer?</p></li>
+     <li><p class="about">Does it contain any business logic?</p></li>
+     <li><p class="about">Does it try to do anything not related to UI?</p></li>
+   </ul>
+   <p class="about">If you answer “yes” to any of these questions, you probably have an opportunity to clean up and refactor. As you are violating the MVC concept and Of course, these rules aren’t written in stone and sometimes you’ll need to bend them. Nonetheless, it’s important to pay them respect.</p>
+   <br>
+   <h3>The Controller Layer</h3>
+   <p class="about">The controller layer is where the application is managed. Controller objects, or controllers, are the managers of an application. Controllers configure the views that the user sees and make sure that the view and model objects stay synchronized. The controller layer is the least reusable part of your app, because it involves your domain-specific rules. It should be no surprise that what makes sense in your app probably wouldn’t make sense in someone else’s.</p>
+
+    <p class="about">Usually, you’ll see classes from this layer deciding things like:</p>
+    <ul>
+      <li><p class="about">What should be accessed first: the persistence or the network?</p></li>
+      <li><p class="about">How often should you refresh the app?</p></li>
+      <li><p class="about">What should the next screen be and in what circumstances?</p></li>
+      <li><p class="about">If the app goes to the background, what should be cleaned?</p></li>
+    </ul>
+        <p class="about">You should think of the controller layer as the brain of the app: It decides what happens next. Usually you’ll want to heavily test these classes to make sure everything works as expected.
+      <br>
+    <h3>The Model Layer</h3>
+      <p class="about">The model layer holds data and knows nothing about the user interface. Model objects encapsulate the data specific to an application and define the logic and computation that manipulate and process that data. For example, a model object might represent a character in a game or a contact in an address book. A model object can have to-one and to-many relationships with other model objects, and so sometimes the model layer of an application effectively is one or more object graphs. Much of the data that is part of the persistent state of the application (whether that persistent state is stored in files or databases) should reside in the model objects after the data is loaded into the application. Because model objects represent knowledge and expertise related to a specific problem domain, they can be reused in similar problem domains. Ideally, a model object should have no explicit connection to the view objects that present its data and allow users to edit that data—it should not be concerned with user-interface and presentation issues. In my <a href="https://github.com/khalidyaseen/Calculator">Calculator App</a> the whole logic I wrote is present in <a href="https://github.com/khalidyaseen/Calculator/blob/master/Calculator/CalculatorBrain.swift">CalculatorBrain.swift</a> file where I wrote the function to calculate the basic operations and where from it returns the result</p></p>
+      <br>
+      <br>
+      <br>
+      <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://yaseenmajeed-com.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <p class="about"></p>
+      <p class="about"></p>
+      <p class="about"></p>
+      <p class="about"></p>
+      <p class="about"></p>
+      <p class="about"></p>
+</header> <!--header-->
+</section> <!--container"-->
+</section> <!--wrapper-->
+
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="static/js/main.js"></script>
+
+<!-- Slider js -->
+<script src="static/js/responsiveslides.min.js"></script>
+<script src="static/js/pleasework.js"></script>
+<script type="text/javascript" src="static/js/fresco.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-71920389-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script id="dsq-count-scr" src="//yaseenmajeed-com.disqus.com/count.js" async></script>
+</body>
+</html>
