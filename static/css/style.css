@@ -837,6 +837,13 @@ Home Page
 	color: #ff0000;
 	font-size: 26px;
 }
+.side_about{
+	font-size: 1.00rem;
+	font-weight: 100;
+	font-style: italic;
+	color: rgb(170, 170, 170);
+	line-height: 1.00;
+}
 
 .homepage-quote {
 	font-size: 1.875rem;
