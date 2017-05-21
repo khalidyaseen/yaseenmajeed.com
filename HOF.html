@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<!-- Start of Async Drift Code -->
+<script>
+!function() {
+  var t;
+  if (t = window.driftt = window.drift = window.driftt || [], !t.init) return t.invoked ? void (window.console && console.error && console.error("Drift snippet included twice.")) : (t.invoked = !0, 
+  t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
+  t.factory = function(e) {
+    return function() {
+      var n;
+      return n = Array.prototype.slice.call(arguments), n.unshift(e), t.push(n), t;
+    };
+  }, t.methods.forEach(function(e) {
+    t[e] = t.factory(e);
+  }), t.load = function(t) {
+    var e, n, o, i;
+    e = 3e5, i = Math.ceil(new Date() / e) * e, o = document.createElement("script"), 
+    o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + i + "/" + t + ".js", 
+    n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
+  });
+}();
+drift.SNIPPET_VERSION = '0.3.1';
+drift.load('hzfuddnsryka');
+</script>
+<!-- End of Async Drift Code -->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+  <meta property="og:description" content="Every new iOS developer is exposed to a huge amount of information that is crucial to master: a new language, new frameworks, and Apple’s recommended architectural pattern: Model-View-Controller"/>
+  <meta property="og:image" content="static/images/mvc.png">
+  <meta property="og:url" content="https://khalidyaseen.github.io/yaseenmajeed.com/blog.html">
+  <meta property="og:type" content="blog"/>
+
+	<link rel="shortcut icon" href="static/images/favicon.ico">
+	<link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/responsiveslides.css" />
+  <link rel="stylesheet" type="text/css" href="static/css/fresco/fresco.css"/>
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600,300italic,400italic' rel='stylesheet' type='text/css'>
+
+  <title>Higher Order Functions in Swift</title>
+
+</head>
+
+<body>
+
+  <section id="wrapper">
+
+<!--nav-->
+<section id="nav">
+<div class="nav">
+  <a href="index.html" class="avatar">
+    <img id="avatar" class="2x" src="static/images/avatar@2x.jpg"/></img>
+  </a>
+  <ul class="nav">
+    <li><a href="index.html">About</a></li>
+    <li><a href="career.html" id="active">Experience</a>
+      <ul>
+        <li>
+          <a href="career.html" id="active">Career</a>
+          <a href="blog.html" id="active">Blogs</a>
+          <!--<a href="macys.html">Product</a>
+          <a href="talks.html">Friends</a>--> 
+        </li>
+      </ul>
+    </li>
+    <!--<li><a href="process.html">Process</a></li>-->
+  </ul>
+  <div>
+    <a href="https://www.linkedin.com/profile/view?id=AAIAABNnvR8BxQLwV8MK5H5L4hGxYaTNhiCgT5E&trk=nav_responsive_tab_profile" target="_blank">
+      <img class="mail" class="2x" src="static/images/linkedin@2x.png"/></img>
+    </a>
+    <a href="https://twitter.com/khalidyaseen1" target="_blank" id="tweet">
+      <img class="mail" class="2x" src="static/images/tweet@2x.png"/></img>
+    </a>  
+  </div>
+</div>
+</section> <!--nav-->
+
+
+<section id="container">
+  <header id="content">
+    <h1 id="breadcrumb">Simple Higher Order Functions in Swift 3 (Map, filter, reduce and flatMap)!</h1>
+    <br>
+    <div id="hr-yellow"></div>
+
+<div class="row">
+
+ <div class="swiftarticle columns">
+   <p class="about">In this blog post, I will be talking about Swift's powerful and most useful functions known as higer order functions which you can use on <a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html">collection types</a>. Simply saying, higher order functions are fumctions that you can pass as argument to other functions. It might seem confusing at first but I will try my best to clarify the things using examples below. Without further a due lets dive in.</p>
+   <h3>Map</h3>
+   <p class="about">Loops over a collection and applies the same operation to each element in the collection.</p>
+   <p class="about">Let’s assume we need to multiply each item by 2 in an array called numberArray. One approach can be:</p>
+    <img src="static/images/Mul2.png"></img>
+   <p class="about">In this example above, you made an empty array called emptyArray that holds integer values, looped through the original array, multiplied each element by 2 and appended them to the emptyArray.</p>
+   <p class="about">Now, let’s use map for a comparison!</p>
+   <img src="static/images/map.png"></img>
+   <p class="about">In these examples above, map accepted a closure (a.k.a a first class function that can be passed around and used in code) as an argument and returned the exact same results as if we used a for loop!</p>
+   <p class="about">“Wait,” you might say — “Map 1 to 4 look different! Aren’t they all map? Why are they written differently?”</p>
+   <p class="about">The answer is: YES! They are all the same. It’s just a matter of long-form vs shorthand closure syntax preference.</p>
+   <img src="static/images/syntax.png"></img>
+   <p class="about"><div class = "warning">Note that when a closure is the only OR last argument of a function, ( ) can be omitted as shown above.</div></p>
+   <h3>Filter</h3>
+   <p class="about">Loops over a collection and returns an array that contains elements that meet a condition.</p>
+   
+
+   <p class="about">ILet’s assume we need to filter even numbers only in the following array example. The traditional approach can be:</p>
+   <img src="static/images/filter.png"></img>
+   <p class="about">Instead, let’s use filter for the same result:</p>
+   <img src="static/images/filteruse.png"></img>
+   <p class="about">THow simple was that! Filter just eliminated the need of creating an empty array that holds the results, but also takes up valuable computing memory. One line of code — the same exact result!</p>
+
+    <h3>Reduce</h3>
+        <p class="about">Combines all items in a collection to create a single value.</p>
+      <p class="about">Let’s assume we need to get the sum of all the numbers in an array of integers. One solution would be to implement another For-In loop:</p>
+      <img src="static/images/reduce.png"></img>
+
+      <p class="about">Now let’s use reduce for the same result.</p>
+      <p class="about">The two parameters in reduce function are a starting value and a function respectively. The function takes a running total and an element of the array as parameters, and returns a new running total.</p>
+      <img src="static/images/reduceuse.png"></img>
+      <p class="about">Again, one line of code — the same result!</p>
+      <p class="about">Despite the odd syntax, the addition of two adjacent values is taking place between the {} brackets, and the sum is then added to the 0 on the left.</p>
+      <p class="about">there is an easier way to write this!</p>
+       <img src="static/images/reducesimple.png"></img>
+      <p class="about">In the last example, the + operator is substituted for the {$0 + $1} closure, creating an even more simplified and accessible syntax.</p>
+      <p class="about">Interestingly, the same rule applies to string arrays as well:</p>
+      <img src="static/images/reducestring.png"></img>
+      <h3>FlatMap</h3>
+      <p class="about">When implemented on sequences : Flattens a collection of collections.</p>
+      <p class="about">Say we have two arrays within an array that we would like to combine into a single array. How would we accomplish this? Probably with another For-In loop:</p>
+      <img src="static/images/flatmap1.png"></img>
+      <p class="about">Not this time, flatMap to the rescue!</p>
+      <img src="static/images/flatmap2.png"></img>
+      <br>
+      <br>
+
+      <p class="about">Implemented on optionals : Removes nil from the collection.</p>
+      <img src="static/images/flatmap3.png"></img>
+      
+      <h3>Chaining</h3>
+      <p class="about">This is when Higher Order Functions truly shine. You can combine all those HOFs you’ve just learned in one line of code!</p>
+      <p class="about">Let’s say we want to add the squares of all the even numbers from an array of arrays.</p>
+      <p class="about">Rather than writing a bunch of for loops and if conditions, we can instead use HOFs to simplify our code and get the same results.</p>
+      <img src="static/images/chain.png"></img>
+      <p class="about">Now, let’s show that the Ints represent money by inserting a $ in front of every element in the arrayInArray example using flatMap and map.</p>
+      <img src="static/images/dollaradd.png"></img>
+      <p class="about">Just one line of code with an awesomely powerful result!</p>
+      
+
+      <h3>So Why to Use Higher Order Functions?</h3>
+      <p class="about">As you might have noticed, that the amount of effort and time is much lesser if we adapt ourselves to use higer order functions. Not only efforts it makes our code readable and shorter. These simplistic examples above sum up the reasons why we should use higher order functions in place of more commonly used methods. They help us: </p>
+      <ul>
+        <li><p class="about">Read and understand complex functional programming</p></li>
+        <li><p class="about">Write more elegantly and maintainable code that has better readability</p></li>
+        <li><p class="about">Improve our Swift language skills</p></li>
+      </ul>
+      <p class="about">This was just a brief introduction. Hopefully it will help new Swift Developers who has just started their journey. Functional programming is something that takes a long time to get used to, and understanding and harnessing its power takes a lot of time and practice. So be Patient Read Articles and write functional code as much as you can.</p>
+     <h3>Happy Coding</h3>
+
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://yaseenmajeed-com.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <p class="about"></p>
+      <p class="about"></p>
+      <p class="about"></p>
+      <p class="about"></p>
+      <p class="about"></p>
+      <p class="about"></p>
+</header> <!--header-->
+</section> <!--container"-->
+</section> <!--wrapper-->
+
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="static/js/main.js"></script>
+
+<!-- Slider js -->
+<script src="static/js/responsiveslides.min.js"></script>
+<script src="static/js/pleasework.js"></script>
+<script type="text/javascript" src="static/js/fresco.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-71920389-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script id="dsq-count-scr" src="//yaseenmajeed-com.disqus.com/count.js" async></script>
+</body>
+</html>
